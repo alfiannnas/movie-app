@@ -1,11 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { getMovieList, searchMovie } from "./api.js";
 
 const App = () => {
+  const [popularMovies, setPopularMovies] = useState([]);
+
   useEffect(() => {
-    getMovieList();
+    getMovieList().then((result) => {
+      setPopularMovies(result);
+    });
   }, []);
+
+  const PopularMovieList = () => {
+    return popularMovies.map((movie, i) => (
+      <div className="flex justify-start items-start" key={i}>
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <figure>
+            <img src={`${import.meta.env.VITE_APP_BASEIMGURL}/${movie.poster_path}`} alt={movie.title} />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{movie.title}</h2>
+            <p>{movie.release_date}</p>
+            <div className="card-actions justify-end">
+              <div className="badge badge-accent">{movie.vote_average}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
+  };
 
   const search = (q) => {
     console.log({ q });
@@ -25,20 +48,7 @@ const App = () => {
       </div>
 
       {/* Card */}
-      <div className="flex justify-start items-start">
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Jsudul</h2>
-            <p>Tanggal</p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-accent">8.9</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PopularMovieList />
     </div>
   );
 };
