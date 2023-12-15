@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getMovieList, searchMovie } from "./api.js";
 import NavBar from "./components/NavBar.tsx";
 import SearchBar from "./components/SearchBar.tsx";
+import Carousel from "./components/Carousel.tsx";
 
 const App = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -12,10 +13,9 @@ const App = () => {
       setPopularMovies(result);
     });
   }, []);
-
   const PopularMovieList = () => {
     return popularMovies.map((movie, i) => (
-      <div className="card w-56 bg-base-100 shadow-xl" key={i}>
+      <div className="card w-56 bg-base-100 shadow-xl border border-transparent rounded-lg transition-transform transform hover:scale-105" key={i}>
         <figure className="max-h-290">
           <img src={`${import.meta.env.VITE_APP_BASEIMGURL}/${movie.poster_path}`} alt={movie.title} />
         </figure>
@@ -37,6 +37,7 @@ const App = () => {
   return (
     <>
       <NavBar />
+      <Carousel />
       <SearchBar />
       <div className="flex flex-wrap gap-20 justify-center">
         <PopularMovieList />
