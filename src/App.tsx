@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { getMovieList, searchMovie } from "./api.js";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col items-center h-screen">
+      <p>my secret key = {import.meta.env.VITE_APP_APIKEY}</p>
       {/* Search Bar */}
       <div className="mb-8">
         <label className="form-control w-full max-w-xs flex">
