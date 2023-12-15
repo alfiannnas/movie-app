@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { getMovieList, searchMovie } from "./api.js";
+import NavBar from "./components/NavBar.tsx";
+import SearchBar from "./components/SearchBar.tsx";
 
 const App = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -34,17 +36,8 @@ const App = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center">
-        {/* Search Bar */}
-        <div className="mb-8">
-          <label className="form-control w-full max-w-xs flex">
-            <div className="label">
-              <span className="label-text">Film apa yang sedang kamu cari?</span>
-            </div>
-            <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={({ target }) => search(target.value)} />
-          </label>
-        </div>
-      </div>
+      <NavBar />
+      <SearchBar />
       <div className="flex flex-wrap gap-20 justify-center">
         <PopularMovieList />
       </div>
