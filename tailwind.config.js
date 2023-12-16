@@ -5,6 +5,9 @@ export default {
     maxHeight: {
       290: "290px",
     },
+    height: {
+      583: "583",
+    },
     extend: {},
   },
   daisyui: {

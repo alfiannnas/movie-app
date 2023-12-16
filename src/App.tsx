@@ -38,7 +38,7 @@ const App = () => {
     <>
       <NavBar />
       <Carousel />
-      <SearchBar />
+
       <div className="flex flex-wrap gap-20 justify-center">
         <PopularMovieList />
       </div>
